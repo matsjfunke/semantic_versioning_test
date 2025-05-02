@@ -2,10 +2,6 @@ const explanations = {
   "type-enum":
     "Type must be one of: feat, fix, docs, wip, refactor, test, ci, chore, infra",
   "type-empty": 'Message must begin with a type (e.g. "feat: ", "fix: ")',
-  "subject-empty": "A subject must follow the type and colon",
-  "body-leading-blank": "There must be a blank line between header and body",
-  "footer-max-line-length":
-    "No line in the footer can be longer than 200 characters",
 };
 
 function getDetailedDescription(ruleName) {
