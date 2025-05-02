@@ -16,7 +16,7 @@ module.exports = {
         "infra",
       ],
     ],
-    "body-max-line-length": [2, "always", 200],
+    "body-max-line-length": [2, "always", 100],
     "footer-max-line-length": [2, "always", 200],
     "body-leading-blank": [2, "always"],
     "header-max-length": [2, "always", 200],

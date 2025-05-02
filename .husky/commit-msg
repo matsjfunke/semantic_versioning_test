@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-# This file should not contain the line referencing husky.sh in husky v9+
+. "$(dirname -- "$0")/_/husky.sh"
 
 npx --no -- commitlint --edit ${1}
