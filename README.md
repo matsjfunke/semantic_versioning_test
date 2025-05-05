@@ -1,6 +1,13 @@
 # Semantic Versioning & Commit Workflow
 
-This project uses semantic versioning, conventional commits, and automated release management to maintain a consistent workflow.
+This repository demonstrates a minimal example setup for semantic versioning and commit linting, providing a standardized approach to version management and commit messages.
+
+## Table of Contents
+
+- [Commit Linting](#commit-linting)
+- [Semantic Versioning](#semantic-versioning)
+- [Automated Workflow](#automated-workflow)
+- [Further Improvements](#further-improvements)
 
 ## Commit Linting
 
@@ -25,15 +32,12 @@ Only the following commit types are allowed:
 
 ### Examples
 
-| Valid Commit Messages                         | Invalid Commit Messages |
-| --------------------------------------------- | ----------------------- |
-| `feat: add user authentication`               | `add new feature`       |
-| `fix: resolve login redirect issue`           | `updated code`          |
-| `docs: update API documentation`              | `WIP`                   |
-| `refactor: simplify payment processing logic` | `Fixed bug`             |
-| `perf: optimize database queries`             | `New feature added`     |
-| `style: format according to style guide`      | `Quick fix`             |
-| `wip: partial implementation of feature`      | `work in progress`      |
+| Valid Commit Messages               | Invalid Commit Messages |
+| ----------------------------------- | ----------------------- |
+| `feat: add user authentication`     | `add new feature`       |
+| `fix: resolve login redirect issue` | `updated code`          |
+
+| `wip: partial implementation of feature` | `work in progress` |
 
 ## Semantic Versioning
 
@@ -60,3 +64,18 @@ git commit -m "wip: partial implementation"       # → Does not bump version
    - Adds comments to Pull Requests:
      - Success: "🎉 This PR is included in version X.Y.Z"
      - Failure: "❌ Release failed due to an error"
+
+## Further Improvements
+
+**Commitlinting:**
+
+1. add nicer looking erros with a `commitlint-formatter.js`
+2. add helpUrl to commitlint errors
+3. add more commit rules -> enforce casing, length, line breaks
+4. Enforce only one fix/feat per branch via husky hook
+
+**Release:**
+
+1. improve release notes
+
+- [emoji in relase notes](https://github.com/momocow/semantic-release-gitmoji?tab=readme-ov-file#semantic-release-gitmoji)
