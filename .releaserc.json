@@ -1,7 +1,22 @@
 {
   "branches": ["main"],
   "plugins": [
-    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "angular",
+        "releaseRules": [
+          {"type": "docs", "scope": "README", "release": "patch"},
+          {"type": "refactor", "release": "patch"},
+          {"type": "style", "release": "patch"},
+          {"type": "perf", "release": "patch"},
+          {"type": "test", "release": "patch"}
+        ],
+        "parserOpts": {
+          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+        }
+      }
+    ],
     [
       "@semantic-release/release-notes-generator",
       {
@@ -16,21 +31,26 @@
         }
       }
     ],
-    [
-      "@semantic-release/changelog",
-      {
-        "changelogFile": "CHANGELOG.md",
-        "changelogTitle": "# Changelog\n\nAll notable changes to this project will be documented in this file."
-      }
-    ],
     "@semantic-release/npm",
     [
       "@semantic-release/git",
       {
-        "assets": ["package.json", "CHANGELOG.md"],
+        "assets": ["package.json"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
-    "@semantic-release/github"
+    [
+      "@semantic-release/github",
+      {
+        "successComment": "🎉 This PR is included in version ${nextRelease.version}",
+        "failComment": "❌ Release failed due to errors",
+        "releaseNameTemplate": "Release v${nextRelease.version}",
+        "releasedLabels": ["released"],
+        "assets": [
+          {"path": "dist/**", "label": "Distribution"},
+          {"path": "docs/**", "label": "Documentation"}
+        ]
+      }
+    ]
   ]
 } 
