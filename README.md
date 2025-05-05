@@ -21,6 +21,7 @@ Only the following commit types are allowed:
 - `ci`: Changes to CI configuration
 - `chore`: Other changes that don't modify src or test files
 - `revert`: Reverts a previous commit
+- `wip`: Work in progress changes (doesn't trigger version bumps)
 
 ### Examples
 
@@ -32,6 +33,7 @@ Only the following commit types are allowed:
 | `refactor: simplify payment processing logic` | `Fixed bug`             |
 | `perf: optimize database queries`             | `New feature added`     |
 | `style: format according to style guide`      | `Quick fix`             |
+| `wip: partial implementation of feature`      | `work in progress`      |
 
 ## Semantic Versioning
 
@@ -41,6 +43,7 @@ This project follows semantic versioning (MAJOR.MINOR.PATCH) with automatic vers
 git commit -m "feat: add user authentication"    # → Bumps MINOR version
 git commit -m "fix: resolve login redirect bug"   # → Bumps PATCH version
 git commit -m "feat!: completely redesign UI"     # → Bumps MAJOR version
+git commit -m "wip: partial implementation"       # → Does not bump version
 ```
 
 ## Automated Workflow
