@@ -13,6 +13,20 @@
       }],
       ["@semantic-release/release-notes-generator", {
         "preset": "angular",
+        "presetConfig": {
+          "types": [
+            {"type": "feat", "section": "✨ Features"},
+            {"type": "fix", "section": "🐛 Bug Fixes"},
+            {"type": "perf", "section": "🚀 Performance Improvements"},
+            {"type": "refactor", "section": "🧼 Code Refactoring"},
+            {"type": "docs", "section": "📚 Documentation"},
+            {"type": "style", "section": "💄 Styles"},
+            {"type": "test", "section": "✅ Tests"},
+            {"type": "build", "section": "🏗️ Build System"},
+            {"type": "ci", "section": "👷 Continuous Integration"},
+            {"type": "chore", "section": "🔧 Chores"}
+          ]
+        },
         "writerOpts": {
           "groupBy": "type",
           "commitsSort": "header",
@@ -27,39 +41,7 @@
             "build",
             "ci",
             "chore"
-          ],
-          "groups": {
-            "feat": {
-              "title": ":sparkles: Features"
-            },
-            "fix": {
-              "title": ":bug: Bug Fixes"
-            },
-            "perf": {
-              "title": ":rocket: Performance Improvements"
-            },
-            "refactor": {
-              "title": ":wrench: Code Refactoring"
-            },
-            "docs": {
-              "title": ":books: Documentation"
-            },
-            "style": {
-              "title": ":lipstick: Styles"
-            },
-            "test": {
-              "title": ":white_check_mark: Tests"
-            },
-            "build": {
-              "title": ":building_construction: Build System"
-            },
-            "ci": {
-              "title": ":construction_worker: Continuous Integration"
-            },
-            "chore": {
-              "title": ":wrench: Chores"
-            }
-          }
+          ]
         }
       }],
       ["@semantic-release/git", {
