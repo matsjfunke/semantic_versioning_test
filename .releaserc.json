@@ -1,56 +1,35 @@
 {
   "branches": ["main"],
   "plugins": [
-    [
-      "@semantic-release/commit-analyzer",
-      {
-        "preset": "angular",
-        "releaseRules": [
-          {"type": "docs", "scope": "README", "release": "patch"},
-          {"type": "refactor", "release": "patch"},
-          {"type": "style", "release": "patch"},
-          {"type": "perf", "release": "patch"},
-          {"type": "test", "release": "patch"}
-        ],
-        "parserOpts": {
-          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
-        }
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular",
+      "releaseRules": [
+        {"type": "docs", "scope": "README", "release": "patch"},
+        {"type": "refactor", "release": "patch"},
+        {"type": "style", "release": "patch"},
+        {"type": "perf", "release": "patch"},
+        {"type": "test", "release": "patch"}
+      ]
+    }],
+    ["@semantic-release/release-notes-generator", {
+      "preset": "angular",
+      "writerOpts": {
+        "groupBy": "type",
+        "commitGroupsSort": ["feat", "fix", "perf", "refactor"],
+        "commitsSort": "header"
       }
-    ],
-    [
-      "@semantic-release/release-notes-generator",
-      {
-        "preset": "angular",
-        "parserOpts": {
-          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
-        },
-        "writerOpts": {
-          "commitsSort": ["subject", "scope"],
-          "includeAuthor": true,
-          "headerPartial": "{{#if @root.linkReferences~}}\n  {{~#each commits~}}\n    {{~#if hash}} {{#if @root.linkReferences~}}\n      [{{shortHash}}]({{commitUrlFormat}}) \n    {{~else~}}\n      {{shortHash}}\n    {{~/if~}}\n    {{~else}}\n      {{shortHash}}\n    {{~/if~}}\n    {{~#if author}} **{{author.name}}** {{author.email}} {{~/if}} \n    {{~#if breaking}} **BREAKING** {{/if~}}\n    {{~#if scope}} **{{scope}}:** {{~/if~}}\n    {{~subject}}\n  {{~/each}}\n{{~else~}}\n  {{~#each commits~}}\n    {{~#if breaking}} **BREAKING** {{/if~}}\n    {{~#if scope}} **{{scope}}:** {{~/if~}}\n    {{~subject}}\n  {{~/each}}\n{{~/if}}"
-        }
-      }
-    ],
-    "@semantic-release/npm",
-    [
-      "@semantic-release/git",
-      {
-        "assets": ["package.json"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
-    ],
-    [
-      "@semantic-release/github",
-      {
-        "successComment": "🎉 This PR is included in version ${nextRelease.version}",
-        "failComment": "❌ Release failed due to errors",
-        "releaseNameTemplate": "Release v${nextRelease.version}",
-        "releasedLabels": ["released"],
-        "assets": [
-          {"path": "dist/**", "label": "Distribution"},
-          {"path": "docs/**", "label": "Documentation"}
-        ]
-      }
-    ]
+    }],
+    ["@semantic-release/github", {
+      "assets": [],
+      "successComment": "🎉 This ${issue.pull_request ? 'PR is included' : 'issue is fixed'} in version ${nextRelease.version}",
+      "failComment": "❌ Release failed due to an error",
+      "failTitle": "Release Failed",
+      "labels": ["released"],
+      "releasedLabels": ["released"]
+    }],
+    ["@semantic-release/git", {
+      "assets": ["package.json"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }]
   ]
 } 
