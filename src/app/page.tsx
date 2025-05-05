@@ -5,7 +5,7 @@ export default function Home() {
   const [version, setVersion] = useState(0);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div>
       <h1>Semantic Versioning Test</h1>
       <p>This is a test of semantic versioning.</p>
       <button
@@ -13,7 +13,7 @@ export default function Home() {
           setVersion(version + 1);
         }}
       >
-        Click me
+        ✨ Increment Version ✨
       </button>
       <p>Version: {version}</p>
     </div>
