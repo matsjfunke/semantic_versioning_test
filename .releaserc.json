@@ -13,20 +13,6 @@
       }],
       ["@semantic-release/release-notes-generator", {
         "preset": "angular",
-        "presetConfig": {
-          "types": [
-            {"type": "feat", "section": "✨ Features"},
-            {"type": "fix", "section": "🐛 Bug Fixes"},
-            {"type": "perf", "section": "🚀 Performance Improvements"},
-            {"type": "refactor", "section": "🧼 Code Refactoring"},
-            {"type": "docs", "section": "📚 Documentation"},
-            {"type": "style", "section": "💄 Styles"},
-            {"type": "test", "section": "✅ Tests"},
-            {"type": "build", "section": "🏗️ Build System"},
-            {"type": "ci", "section": "👷 Continuous Integration"},
-            {"type": "chore", "section": "🔧 Chores"}
-          ]
-        },
         "writerOpts": {
           "groupBy": "type",
           "commitsSort": "header",
@@ -42,11 +28,31 @@
             "ci",
             "chore"
           ]
+        },
+        "linkCompare": true,
+        "linkReferences": true,
+        "headerPartial": "## {{version}} ({{date}})\n\n",
+        "mainTemplate": "{{> header}}\n\n{{#with commits}}{{#each groups}}{{#if commits.length}}### {{title}}\n\n{{#each commits}}{{> commit root=@root}}{{/each}}\n{{/if}}{{/each}}{{/with}}\n\n{{> footer}}",
+        "commitPartial": "* {{header}} {{#if hash}}([{{shortHash}}]({{commitUrl}})){{/if}}\n",
+        "partials": {
+          "header": "## {{version}} ({{date}})\n\n",
+          "commit": "* {{header}} {{#if hash}}([{{shortHash}}]({{commitUrl}})){{/if}}\n",
+          "footer": ""
+        },
+        "presetConfig": {
+          "types": [
+            {"type": "feat", "section": "✨ Features"},
+            {"type": "fix", "section": "🐛 Bug Fixes"},
+            {"type": "perf", "section": "🚀 Performance Improvements"},
+            {"type": "refactor", "section": "🧼 Code Refactoring"},
+            {"type": "docs", "section": "📚 Documentation"},
+            {"type": "style", "section": "💄 Styles"},
+            {"type": "test", "section": "✅ Tests"},
+            {"type": "build", "section": "🏗️ Build System"},
+            {"type": "ci", "section": "👷 Continuous Integration"},
+            {"type": "chore", "section": "🔧 Chores"}
+          ]
         }
-      }],
-      ["@semantic-release/git", {
-        "assets": ["package.json"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }],
       ["@semantic-release/github", {
         "assets": [],
@@ -55,6 +61,10 @@
         "failTitle": "Release Failed",
         "labels": ["released"],
         "releasedLabels": ["released"]
+      }],
+      ["@semantic-release/git", {
+        "assets": ["package.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }]
     ]
   } 
