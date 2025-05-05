@@ -1,35 +1,80 @@
 {
-  "branches": ["main"],
-  "plugins": [
-    ["@semantic-release/commit-analyzer", {
-      "preset": "angular",
-      "releaseRules": [
-        {"type": "docs", "scope": "README", "release": "patch"},
-        {"type": "refactor", "release": "patch"},
-        {"type": "style", "release": "patch"},
-        {"type": "perf", "release": "patch"},
-        {"type": "test", "release": "patch"}
-      ]
-    }],
-    ["@semantic-release/release-notes-generator", {
-      "preset": "angular",
-      "writerOpts": {
-        "groupBy": "type",
-        "commitGroupsSort": ["feat", "fix", "perf", "refactor"],
-        "commitsSort": "header"
-      }
-    }],
-    ["@semantic-release/github", {
-      "assets": [],
-      "successComment": "🎉 This ${issue.pull_request ? 'PR is included' : 'issue is fixed'} in version ${nextRelease.version}",
-      "failComment": "❌ Release failed due to an error",
-      "failTitle": "Release Failed",
-      "labels": ["released"],
-      "releasedLabels": ["released"]
-    }],
-    ["@semantic-release/git", {
-      "assets": ["package.json"],
-      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    }]
-  ]
-} 
+    "branches": ["main"],
+    "plugins": [
+      ["@semantic-release/commit-analyzer", {
+        "preset": "angular",
+        "releaseRules": [
+          {"type": "docs", "scope": "README", "release": "patch"},
+          {"type": "refactor", "release": "patch"},
+          {"type": "style", "release": "patch"},
+          {"type": "perf", "release": "patch"},
+          {"type": "test", "release": "patch"}
+        ]
+      }],
+      ["@semantic-release/release-notes-generator", {
+        "preset": "angular",
+        "writerOpts": {
+          "groupBy": "type",
+          "commitsSort": "header",
+          "commitGroupsSort": [
+            "feat",
+            "fix",
+            "perf",
+            "refactor",
+            "docs",
+            "style",
+            "test",
+            "build",
+            "ci",
+            "chore"
+          ],
+          "groups": {
+            "feat": {
+              "title": "✨ Features"
+            },
+            "fix": {
+              "title": "🐛 Bug Fixes"
+            },
+            "perf": {
+              "title": "🚀 Performance Improvements"
+            },
+            "refactor": {
+              "title": "🔧 Code Refactoring"
+            },
+            "docs": {
+              "title": "📚 Documentation"
+            },
+            "style": {
+              "title": "💄 Styles"
+            },
+            "test": {
+              "title": "✅ Tests"
+            },
+            "build": {
+              "title": "🏗️ Build System"
+            },
+            "ci": {
+              "title": "👷 Continuous Integration"
+            },
+            "chore": {
+              "title": "🔧 Chores"
+            }
+          }
+        }
+      }],
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      ["@semantic-release/git", {
+        "assets": ["package.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }],
+      ["@semantic-release/github", {
+        "assets": [],
+        "successComment": "🎉 This ${issue.pull_request ? 'PR is included' : 'issue is fixed'} in version ${nextRelease.version}",
+        "failComment": "❌ Release failed due to an error",
+        "failTitle": "Release Failed",
+        "labels": ["released"],
+        "releasedLabels": ["released"]
+      }]
+    ]
+  } 
