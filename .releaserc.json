@@ -30,40 +30,38 @@
           ],
           "groups": {
             "feat": {
-              "title": "✨ Features"
+              "title": ":sparkles: Features"
             },
             "fix": {
-              "title": "🐛 Bug Fixes"
+              "title": ":bug: Bug Fixes"
             },
             "perf": {
-              "title": "🚀 Performance Improvements"
+              "title": ":rocket: Performance Improvements"
             },
             "refactor": {
-              "title": "🔧 Code Refactoring"
+              "title": ":wrench: Code Refactoring"
             },
             "docs": {
-              "title": "📚 Documentation"
+              "title": ":books: Documentation"
             },
             "style": {
-              "title": "💄 Styles"
+              "title": ":lipstick: Styles"
             },
             "test": {
-              "title": "✅ Tests"
+              "title": ":white_check_mark: Tests"
             },
             "build": {
-              "title": "🏗️ Build System"
+              "title": ":building_construction: Build System"
             },
             "ci": {
-              "title": "👷 Continuous Integration"
+              "title": ":construction_worker: Continuous Integration"
             },
             "chore": {
-              "title": "🔧 Chores"
+              "title": ":wrench: Chores"
             }
           }
         }
       }],
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
       ["@semantic-release/git", {
         "assets": ["package.json"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
