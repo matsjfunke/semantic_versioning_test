@@ -57,7 +57,7 @@
       ["@semantic-release/github", {
         "assets": [],
         "successComment": "🎉 This ${issue.pull_request ? 'PR is included' : 'issue is fixed'} in version ${nextRelease.version}",
-        "failComment": "❌ Release failed due to an error",
+        "failComment": "❌ Release failed due to an error.",
         "failTitle": "Release Failed",
         "labels": ["released"],
         "releasedLabels": ["released"]
