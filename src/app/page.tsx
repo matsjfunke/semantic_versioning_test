@@ -15,7 +15,7 @@ export default function Home() {
       >
         Click me
       </button>
-      <h1>Version: {version}</h1>
+      <p>Version: {version}</p>
     </div>
   );
 }
