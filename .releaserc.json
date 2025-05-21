@@ -9,7 +9,9 @@
           { "type": "perf", "release": "patch" },
           { "type": "docs", "release": false },
           { "type": "refactor", "release": false },
+          { "type": "style", "release": false },
           { "type": "test", "release": false },
+          { "type": "wip", "release": false },
           { "type": "website", "release": false },
           { "type": "mobile", "release": false }
         ]
@@ -19,38 +21,24 @@
       "@semantic-release/release-notes-generator",
       {
         "preset": "angular",
-        "writerOpts": {
-          "commitsSort": ["subject", "scope"],
+        "presetConfig": {
           "types": [
             { "type": "feat", "section": "Features" },
             { "type": "fix", "section": "Bug Fixes" },
             { "type": "perf", "section": "Performance Improvements" },
-            { "type": "refactor", "section": "Refactor" },
             { "type": "docs", "section": "Documentation" },
+            { "type": "refactor", "section": "Code Refactoring" },
+            { "type": "style", "section": "Styles" },
             { "type": "test", "section": "Tests" },
+            { "type": "wip", "section": "Work in Progress" },
             { "type": "website", "section": "Website" },
-            { "type": "mobile", "section": "Mobile" }
-          ],
-          "includeCommitWhenNoBump": true
+            { "type": "mobile", "section": "Mobile" },
+            { "type": "chore", "section": "Miscellaneous" },
+            { "type": "ci", "section": "Continuous Integration" },
+            { "type": "build", "section": "Build System" },
+            { "type": "revert", "section": "Reverts" }
+          ]
         }
-      }
-    ],
-    [
-      "@semantic-release/github",
-      {
-        "assets": [],
-        "successComment": "🎉 This ${issue.pull_request ? 'PR is included' : 'issue is fixed'} in version ${nextRelease.version}",
-        "failComment": "❌ Release failed due to an error",
-        "failTitle": "Release Failed",
-        "labels": ["released"],
-        "releasedLabels": ["released"]
-      }
-    ],
-    [
-      "@semantic-release/git",
-      {
-        "assets": ["package.json"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]
   ]
